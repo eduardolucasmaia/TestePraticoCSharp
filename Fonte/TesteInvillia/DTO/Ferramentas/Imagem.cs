@@ -26,7 +26,7 @@ namespace DTO.Ferramentas
                         //imagemMiniatura.Save(@"D:\Desktop\" + largura.ToString() + "-test.jpg");
                         using (MemoryStream imageStream = new MemoryStream())
                         {
-                            imagemMiniatura.Save(imageStream, System.Drawing.Imaging.ImageFormat.Bmp);
+                            imagemMiniatura.Save(imageStream, System.Drawing.Imaging.ImageFormat.Jpeg);
                             imageStream.Position = 0;
                             byte[] imagemBytes = imageStream.ToArray();
                             base64String = Convert.ToBase64String(imagemBytes);
