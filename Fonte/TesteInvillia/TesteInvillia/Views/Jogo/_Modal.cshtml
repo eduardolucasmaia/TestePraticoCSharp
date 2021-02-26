@@ -1,0 +1,22 @@
+﻿<!-- Jogo Modal-->
+<div class="modal fade" id="jogoModal" tabindex="-1" role="dialog" style="overflow-y: auto !important;" aria-labelledby="jogoModalTitle" data-backdrop="static" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="jogoModalTitle">Jogo</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form asp-controller="Jogo" asp-action="Index" id="formJogo" method="post" role="form">
+                    @{await Html.RenderPartialAsync("~/Views/Jogo/_Formulario.cshtml", new DTO.DTO.JogoDTO());}
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+                <button class="btn btn-primary" type="button" onclick="Jogo.Salvar();">Salvar</button>
+            </div>
+        </div>
+    </div>
+</div>

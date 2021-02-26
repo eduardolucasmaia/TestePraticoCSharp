@@ -1,0 +1,36 @@
+﻿<!-- Usuario Modal-->
+<div class="modal fade" id="usuarioModal" tabindex="-1" role="dialog" style="overflow-y: auto !important;" aria-labelledby="usuarioModalTitle" data-backdrop="static" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="usuarioModalTitle">Usuário</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card shadow mb-4">
+                            <div class="card-header py-3">
+                                <h6 class="m-0 font-weight-bold text-primary">Geral</h6>
+                            </div>
+                            <div class="card-body">
+                                <form asp-controller="Usuario" asp-action="Index" id="formUsuario" method="post" role="form">
+                                    @{await Html.RenderPartialAsync("~/Views/Usuario/_Formulario.cshtml", new DTO.DTO.UsuarioDTO());}
+                                </form>
+                                <div class="form-group">
+                                    <button class="btn btn-primary" type="button" onclick="Usuario.Salvar();">Salvar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+                <button class="btn btn-primary" type="button" onclick="Usuario.Salvar();">Salvar</button>
+            </div>
+        </div>
+    </div>
+</div>

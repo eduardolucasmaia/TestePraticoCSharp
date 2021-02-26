@@ -1,0 +1,36 @@
+﻿    <!-- Logout Modal-->
+<div class="modal fade" id="jogoHomeModal" tabindex="-1" role="dialog" style="overflow-y: auto !important;" aria-labelledby="jogoHomeModalLabel" data-backdrop="static" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="jogoHomeModalLabel">Jogos</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <table id="tableJogoHome" class="table table-bordered" cellspacing="0" width="100%"></table>
+                    </div>
+                </div>
+                <br />
+
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <label class="input-group-text" for="inputGroupSelect01">Jogos</label>
+                    </div>
+                    <input type="text" class="form-control" id="jogoHomeInputModal" placeholder="Procurar jogos..." aria-label="Procurar jogos..." aria-describedby="basic-addon2">
+                    <div class="input-group-append">
+                        <button class="btn btn-primary" type="button" onclick="jogoHome.BuscarTabela($('#jogoHomeInputModal').val())">Procurar</button>
+                    </div>
+                </div>
+
+
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" type="button" data-dismiss="modal">Sair</button>
+            </div>
+        </div>
+    </div>
+</div>

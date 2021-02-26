@@ -1,0 +1,169 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.1300
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TesteInvillia", "TesteInvillia\TesteInvillia.csproj", "{2AC62C1B-D6D1-4DE1-B45C-3534F965CAFE}"
+	ProjectSection(ProjectDependencies) = postProject
+		{0977EE58-7A9F-4E69-9EF9-8D5DC7D7DAEB} = {0977EE58-7A9F-4E69-9EF9-8D5DC7D7DAEB}
+		{02CD2B7F-4F31-4F18-B609-54F9832C3F58} = {02CD2B7F-4F31-4F18-B609-54F9832C3F58}
+		{87510E83-9146-4689-AE7D-EC2464989F5D} = {87510E83-9146-4689-AE7D-EC2464989F5D}
+		{6D49FE85-66EF-41E6-87D7-EABC586D06BF} = {6D49FE85-66EF-41E6-87D7-EABC586D06BF}
+		{5C1B28AC-F333-46B4-8B6D-97F878AE8CDA} = {5C1B28AC-F333-46B4-8B6D-97F878AE8CDA}
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "0 - Apresentação", "0 - Apresentação", "{59642170-50DF-4091-BC59-68710EDAEF23}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2 - Domínio", "2 - Domínio", "{A244C133-D938-4EE2-82D6-EC6A6830586E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3 - Infraestrutura", "3 - Infraestrutura", "{B13BEF82-868F-4A8B-9211-48DE9E41F30F}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dominio", "Dominio\Dominio.csproj", "{5C1B28AC-F333-46B4-8B6D-97F878AE8CDA}"
+	ProjectSection(ProjectDependencies) = postProject
+		{0977EE58-7A9F-4E69-9EF9-8D5DC7D7DAEB} = {0977EE58-7A9F-4E69-9EF9-8D5DC7D7DAEB}
+		{02CD2B7F-4F31-4F18-B609-54F9832C3F58} = {02CD2B7F-4F31-4F18-B609-54F9832C3F58}
+		{6D49FE85-66EF-41E6-87D7-EABC586D06BF} = {6D49FE85-66EF-41E6-87D7-EABC586D06BF}
+		{0D5391D2-58B9-4531-A97A-1F69024FF06A} = {0D5391D2-58B9-4531-A97A-1F69024FF06A}
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dominio.Entidades", "Dominio.Entities\Dominio.Entidades.csproj", "{0D5391D2-58B9-4531-A97A-1F69024FF06A}"
+	ProjectSection(ProjectDependencies) = postProject
+		{0977EE58-7A9F-4E69-9EF9-8D5DC7D7DAEB} = {0977EE58-7A9F-4E69-9EF9-8D5DC7D7DAEB}
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dominio.Interfaces", "Dominio.Interfaces\Dominio.Interfaces.csproj", "{6D49FE85-66EF-41E6-87D7-EABC586D06BF}"
+	ProjectSection(ProjectDependencies) = postProject
+		{0977EE58-7A9F-4E69-9EF9-8D5DC7D7DAEB} = {0977EE58-7A9F-4E69-9EF9-8D5DC7D7DAEB}
+		{0D5391D2-58B9-4531-A97A-1F69024FF06A} = {0D5391D2-58B9-4531-A97A-1F69024FF06A}
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DTO", "DTO\DTO.csproj", "{0977EE58-7A9F-4E69-9EF9-8D5DC7D7DAEB}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infra", "Infra\Infra.csproj", "{87510E83-9146-4689-AE7D-EC2464989F5D}"
+	ProjectSection(ProjectDependencies) = postProject
+		{0977EE58-7A9F-4E69-9EF9-8D5DC7D7DAEB} = {0977EE58-7A9F-4E69-9EF9-8D5DC7D7DAEB}
+		{0D5391D2-58B9-4531-A97A-1F69024FF06A} = {0D5391D2-58B9-4531-A97A-1F69024FF06A}
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infra.Interfaces", "Infra.Interfaces\Infra.Interfaces.csproj", "{02CD2B7F-4F31-4F18-B609-54F9832C3F58}"
+	ProjectSection(ProjectDependencies) = postProject
+		{0D5391D2-58B9-4531-A97A-1F69024FF06A} = {0D5391D2-58B9-4531-A97A-1F69024FF06A}
+	EndProjectSection
+EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{D05C263D-6006-4E3B-A107-536FA0F3A161}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4 - Testes", "4 - Testes", "{5167245C-D279-4F02-8B87-9A31E96476C0}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TesteInvillia.TestesIntegracao", "TesteInvillia.TestesIntegracao\TesteInvillia.TestesIntegracao.csproj", "{3B6EBD7C-AF71-4ECE-A86E-5E54F346B864}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TesteInvillia.TestesUnitario", "TesteInvillia.TestesUnitario\TesteInvillia.TestesUnitario.csproj", "{845DC286-9572-4DED-A257-EC37D2D7F64F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1 - Aplicação", "1 - Aplicação", "{0F4F3664-DBD7-4828-80E5-B12F2AF6FEEA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2AC62C1B-D6D1-4DE1-B45C-3534F965CAFE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2AC62C1B-D6D1-4DE1-B45C-3534F965CAFE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2AC62C1B-D6D1-4DE1-B45C-3534F965CAFE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2AC62C1B-D6D1-4DE1-B45C-3534F965CAFE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5C1B28AC-F333-46B4-8B6D-97F878AE8CDA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5C1B28AC-F333-46B4-8B6D-97F878AE8CDA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5C1B28AC-F333-46B4-8B6D-97F878AE8CDA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5C1B28AC-F333-46B4-8B6D-97F878AE8CDA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0D5391D2-58B9-4531-A97A-1F69024FF06A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0D5391D2-58B9-4531-A97A-1F69024FF06A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0D5391D2-58B9-4531-A97A-1F69024FF06A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0D5391D2-58B9-4531-A97A-1F69024FF06A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6D49FE85-66EF-41E6-87D7-EABC586D06BF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6D49FE85-66EF-41E6-87D7-EABC586D06BF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6D49FE85-66EF-41E6-87D7-EABC586D06BF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6D49FE85-66EF-41E6-87D7-EABC586D06BF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0977EE58-7A9F-4E69-9EF9-8D5DC7D7DAEB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0977EE58-7A9F-4E69-9EF9-8D5DC7D7DAEB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0977EE58-7A9F-4E69-9EF9-8D5DC7D7DAEB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0977EE58-7A9F-4E69-9EF9-8D5DC7D7DAEB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{87510E83-9146-4689-AE7D-EC2464989F5D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{87510E83-9146-4689-AE7D-EC2464989F5D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{87510E83-9146-4689-AE7D-EC2464989F5D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{87510E83-9146-4689-AE7D-EC2464989F5D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{02CD2B7F-4F31-4F18-B609-54F9832C3F58}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{02CD2B7F-4F31-4F18-B609-54F9832C3F58}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{02CD2B7F-4F31-4F18-B609-54F9832C3F58}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{02CD2B7F-4F31-4F18-B609-54F9832C3F58}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D05C263D-6006-4E3B-A107-536FA0F3A161}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D05C263D-6006-4E3B-A107-536FA0F3A161}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D05C263D-6006-4E3B-A107-536FA0F3A161}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D05C263D-6006-4E3B-A107-536FA0F3A161}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3B6EBD7C-AF71-4ECE-A86E-5E54F346B864}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3B6EBD7C-AF71-4ECE-A86E-5E54F346B864}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3B6EBD7C-AF71-4ECE-A86E-5E54F346B864}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3B6EBD7C-AF71-4ECE-A86E-5E54F346B864}.Release|Any CPU.Build.0 = Release|Any CPU
+		{845DC286-9572-4DED-A257-EC37D2D7F64F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{845DC286-9572-4DED-A257-EC37D2D7F64F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{845DC286-9572-4DED-A257-EC37D2D7F64F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{845DC286-9572-4DED-A257-EC37D2D7F64F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{2AC62C1B-D6D1-4DE1-B45C-3534F965CAFE} = {59642170-50DF-4091-BC59-68710EDAEF23}
+		{5C1B28AC-F333-46B4-8B6D-97F878AE8CDA} = {A244C133-D938-4EE2-82D6-EC6A6830586E}
+		{0D5391D2-58B9-4531-A97A-1F69024FF06A} = {A244C133-D938-4EE2-82D6-EC6A6830586E}
+		{6D49FE85-66EF-41E6-87D7-EABC586D06BF} = {0F4F3664-DBD7-4828-80E5-B12F2AF6FEEA}
+		{0977EE58-7A9F-4E69-9EF9-8D5DC7D7DAEB} = {0F4F3664-DBD7-4828-80E5-B12F2AF6FEEA}
+		{87510E83-9146-4689-AE7D-EC2464989F5D} = {B13BEF82-868F-4A8B-9211-48DE9E41F30F}
+		{02CD2B7F-4F31-4F18-B609-54F9832C3F58} = {A244C133-D938-4EE2-82D6-EC6A6830586E}
+		{3B6EBD7C-AF71-4ECE-A86E-5E54F346B864} = {5167245C-D279-4F02-8B87-9A31E96476C0}
+		{845DC286-9572-4DED-A257-EC37D2D7F64F} = {5167245C-D279-4F02-8B87-9A31E96476C0}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {574E9EF5-1BD1-4470-B6B3-ECE843C786D5}
+	EndGlobalSection
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 10
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://eduardolucasmaia.visualstudio.com/
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = TesteInvillia\\TesteInvillia.csproj
+		SccProjectTopLevelParentUniqueName1 = TesteInvillia.sln
+		SccProjectName1 = TesteInvillia
+		SccLocalPath1 = TesteInvillia
+		SccProjectUniqueName2 = DTO\\DTO.csproj
+		SccProjectTopLevelParentUniqueName2 = TesteInvillia.sln
+		SccProjectName2 = DTO
+		SccLocalPath2 = DTO
+		SccProjectUniqueName3 = Dominio\\Dominio.csproj
+		SccProjectTopLevelParentUniqueName3 = TesteInvillia.sln
+		SccProjectName3 = Dominio
+		SccLocalPath3 = Dominio
+		SccProjectUniqueName4 = Dominio.Entities\\Dominio.Entidades.csproj
+		SccProjectTopLevelParentUniqueName4 = TesteInvillia.sln
+		SccProjectName4 = Dominio.Entities
+		SccLocalPath4 = Dominio.Entities
+		SccProjectUniqueName5 = Dominio.Interfaces\\Dominio.Interfaces.csproj
+		SccProjectTopLevelParentUniqueName5 = TesteInvillia.sln
+		SccProjectName5 = Dominio.Interfaces
+		SccLocalPath5 = Dominio.Interfaces
+		SccProjectUniqueName6 = Infra.Interfaces\\Infra.Interfaces.csproj
+		SccProjectTopLevelParentUniqueName6 = TesteInvillia.sln
+		SccProjectName6 = Infra.Interfaces
+		SccLocalPath6 = Infra.Interfaces
+		SccProjectUniqueName7 = Infra\\Infra.csproj
+		SccProjectTopLevelParentUniqueName7 = TesteInvillia.sln
+		SccProjectName7 = Infra
+		SccLocalPath7 = Infra
+		SccProjectUniqueName8 = TesteInvillia.TestesIntegracao\\TesteInvillia.TestesIntegracao.csproj
+		SccProjectTopLevelParentUniqueName8 = TesteInvillia.sln
+		SccProjectName8 = TesteInvillia.TestesIntegracao
+		SccLocalPath8 = TesteInvillia.TestesIntegracao
+		SccProjectUniqueName9 = TesteInvillia.TestesUnitario\\TesteInvillia.TestesUnitario.csproj
+		SccProjectTopLevelParentUniqueName9 = TesteInvillia.sln
+		SccProjectName9 = TesteInvillia.TestesUnitario
+		SccLocalPath9 = TesteInvillia.TestesUnitario
+	EndGlobalSection
+EndGlobal

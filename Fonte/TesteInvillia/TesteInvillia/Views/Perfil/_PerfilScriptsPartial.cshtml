@@ -1,0 +1,36 @@
+﻿<script>
+    var Perfil = {
+
+        Salvar: function () {
+
+            MODEL_HELPER.limparMensagemCampos("formPerfil");
+            let usuario = MODEL_HELPER.recuperarDataSalvar("formPerfil");
+
+            AJAX_HELPER.ajaxRequestApi({
+                idForm: "formPerfil",
+                dataObj: usuario,
+                url: URL_HELPER.criarUrlApi('Perfil', 'AtualizarPerfil', true),
+                success: function () {
+                    UsuarioHome.BuscarFotoPerfil();
+                }
+            });
+        },
+
+        BuscarUsuarioAtual: function () {
+
+            MODEL_HELPER.limparMensagemCampos("formPerfil");
+
+            AJAX_HELPER.ajaxRequestApi({
+                idForm: "formPerfil",
+                type: "GET",
+                url: URL_HELPER.criarUrlApi('Perfil', 'BuscarUsuarioAtual', true),
+                success: function (result) {
+                    if (result.retorno != null) {
+                        MODEL_HELPER.popularTodosCampos(result.retorno, "formPerfil");
+                    }
+                }
+            });
+        }
+    };
+
+</script>

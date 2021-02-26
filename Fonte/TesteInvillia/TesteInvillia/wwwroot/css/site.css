@@ -1,0 +1,44 @@
+﻿.container {
+    position: relative;
+    width: 100%;
+    max-width: 300px;
+}
+
+.overlayAtualizar {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+    opacity: 0;
+    transition: .3s ease;
+}
+
+.container:hover .overlayAtualizar {
+    opacity: 1;
+}
+
+.iconAtualizar {
+    cursor: pointer;
+    color: white;
+    font-size: 32px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.iconLogo {
+    background: url('/images/icone_01.ico');
+    max-width: 100%;
+    max-height: 100%;
+    width: 64px;
+    height: 64px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}

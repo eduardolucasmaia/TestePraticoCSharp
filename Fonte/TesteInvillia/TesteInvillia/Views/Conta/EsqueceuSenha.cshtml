@@ -1,0 +1,87 @@
+﻿@model TesteInvillia.Models.EsqueceuSenhaViewModel
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
+    <title>@ViewData["Title"] - @DTO.Ferramentas.Constantes.NOME_APLICACAO</title>
+
+    <environment include="Development">
+        <link rel="stylesheet" href="~/lib/fontawesome-free/css/all.css" />
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" />
+        <link rel="stylesheet" href="~/lib/sb-admin-2/dist/css/sb-admin-2.css" />
+    </environment>
+    <environment exclude="Development">
+        <link rel="stylesheet" href="~/lib/fontawesome-free/css/all.min.css" />
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" />
+        <link rel="stylesheet" href="~/lib/sb-admin-2/dist/css/sb-admin-2.min.css" />
+    </environment>
+</head>
+<body class="bg-gradient-primary">
+    <div class="container">
+        <!-- Outer Row -->
+        <div class="row justify-content-center">
+            <div class="col-xl-10 col-lg-12 col-md-9">
+                <div class="card o-hidden border-0 shadow-lg my-5">
+                    <div class="card-body p-0">
+                        <!-- Nested Row within Card Body -->
+                        <div class="row">
+                            <div class="col-lg-6 d-none d-lg-block bg-password-image"></div>
+                            <div class="col-lg-6">
+                                <div class="p-5">
+                                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                    @if (Model.Sucesso)
+                                    {
+                                        <div class="row">
+                                            <a href="@Url.Action("Login", "Conta" )" class="btn btn-success btn-icon-split">
+                                                <span class="icon text-white-50">
+                                                    <i class="fas fa-check"></i>
+                                                </span>
+                                                <span class="text">E-mail enviado com sucesso! Clique aqui para ser redirecionado a página principal.</span>
+                                            </a>
+                                        </div>
+                                        <br />
+                                    }
+                                    <div class="text-center">
+                                        <h1 class="h4 text-gray-900 mb-2">Esqueceu a senha?</h1>
+                                        <p class="mb-4">Entendemos, as coisas acontecem. Basta digitar seu endereço de e-mail abaixo e enviaremos um link para redefinir sua senha!</p>
+                                    </div>
+                                    <form asp-controller="Conta" asp-action="EsqueceuSenha" class="user" method="post">
+                                        <div class="form-group">
+                                            <input asp-for="Email" class="form-control form-control-user" aria-describedby="emailHelp" placeholder="E-mail" />
+                                            <span asp-validation-for="Email" class="text-danger small"></span>
+                                        </div>
+                                        <button type="submit" class="btn btn-primary btn-user btn-block"> Redefinir senha</button>
+                                    </form>
+                                    <hr>
+                                    <div class="text-center">
+                                        <a class="small" href="@Url.Action("Login", "Conta" )">Já tem uma conta? Conecte-se!</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <environment include="Development">
+        <script src="~/lib/jquery/dist/jquery.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+        <script src="~/lib/jquery-easing/jquery.easing.js"></script>
+        <script src="~/lib/sb-admin-2/dist/js/sb-admin-2.js"></script>
+    </environment>
+    <environment exclude="Development">
+        <script src="~/lib/jquery/dist/jquery.min.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
+        <script src="~/lib/jquery-easing/jquery.easing.min.js"></script>
+        <script src="~/lib/sb-admin-2/dist/js/sb-admin-2.min.js"></script>
+    </environment>
+</body>
+</html>

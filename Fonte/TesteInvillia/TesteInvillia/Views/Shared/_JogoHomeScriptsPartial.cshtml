@@ -1,0 +1,84 @@
+﻿<script>
+    var jogoHome = {
+
+        BuscarTabela: function (procurar) {
+            AJAX_HELPER.ajaxRequestApi({
+                idForm: "formJogoHome",
+                type: "GET",
+                url: URL_HELPER.criarUrlApi('Jogo', 'BuscarJogoPorNome', true) + "?nome=" + procurar,
+                success: function (result) {
+                    DATATABLE_HELPER.montarTabela({
+                        idTabela: 'tableJogoHome',
+                        data: result.retorno,
+                        columnDefs: [{
+                            className: "noVis", "targets": [0]
+                        }],
+                        columns: [
+                            {
+                                data: null,
+                                sortable: false,
+                                title: "Imagem",
+                                width: "10%",
+                                className: "text-center",
+                                render: function (data) {
+                                    return data.miniaturaBase64 !== null ? '<img width="50" style="box-shadow:0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);" src="' + data.miniaturaBase64 + '" />' : '';
+                                }
+                            },
+                            { data: "nome", title: "Nome" },
+                            { data: "descricao", title: "Descrição" },
+                            { data: "plataformaFormatado", title: "Plataforma" },
+                            {
+                                data: null,
+                                sortable: false,
+                                title: "Emprestado",
+                                width: "5%",
+                                className: "text-center",
+                                render: function (data) {
+                                    return data.emprestado ? '<i class="@DTO.Ferramentas.Constantes.ICONE_CHECK_POSITIVO"></i>' : '<i class="@DTO.Ferramentas.Constantes.ICONE_CHECK_NEGATIVO"></i>';
+                                }
+                            },
+                            { data: "observacao", title: "Observações" },
+                            { data: "usuarioLocatario", title: "Usuário utilizando" },
+                            { data: "dataCadastroFormatado", title: "Cadastrado" },
+                            { data: "dataAlteracaoFormatado", title: "alteração" },       
+                        ],
+                        buttons: [
+                            {
+                                extend: 'colvis',
+                                columns: ':not(.noVis)'
+                            },
+                            'excel', 'pdf', 'print'],
+                        select: {
+                            style: 'single',
+                            selector: 'td:not(:first-child)'
+                        },
+                        dom: "Bfrtip",
+                        scrollX: true,
+                        fixedHeader: false,
+                        paging: true,
+                        fixedColumns: true,
+                        scrollY: "500px",
+                        paging: true,
+                        fnDrawCallback: function () {
+                            $(".buttons-print").html('<i class="@DTO.Ferramentas.Constantes.ICONE_IMPRESSORA"></i>&nbsp;Imprimir');
+                            $(".buttons-pdf").html('<i class="@DTO.Ferramentas.Constantes.ICONE_PDF"></i>&nbsp;PDF');
+                            $(".buttons-excel").html('<i class="@DTO.Ferramentas.Constantes.ICONE_EXCEL"></i>&nbsp;Excel');
+                            $(".buttons-colvis").html('<i class="@DTO.Ferramentas.Constantes.ICONE_OLHO"></i>&nbsp;Colunas');
+                        }
+                    });
+
+                }
+            });
+        },
+    };
+
+    $(document).ready(function () {
+        document.getElementById("jogoHomeInput").addEventListener("keyup", function (event) {
+            if (event.keyCode === 13) {
+                event.preventDefault();
+                document.getElementById("jogoHomeButton").click();
+            }
+        });
+    });
+
+</script>

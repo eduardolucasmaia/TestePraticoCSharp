@@ -1,0 +1,167 @@
+﻿<script>
+    var Usuario = {
+
+        BuscarDropdown: function (idForm) {
+            AJAX_HELPER.ajaxRequestApi({
+                idForm: idForm,
+                type: "GET",
+                url: URL_HELPER.criarUrlApi('Usuario', 'BuscarUsuarios', true),
+                success: function (result) {
+                    if (result.retorno !== null) {
+                        $("#" + idForm + " [id=IdUsuario]").empty();
+                        $("#" + idForm + " [id=IdUsuario]").append('<option value="@DTO.Ferramentas.Constantes.FILTRO_SELECIONE">Selecione');
+                        $("#" + idForm + " [id=IdUsuario] option:first").attr('selected', 'selected');
+                        for (let i = 0; i < result.retorno.length; i++) {
+                            MODEL_HELPER.popularDropDown(result.retorno[i].id, result.retorno[i].nome, "IdUsuario", idForm);
+                        }
+                    }
+                }
+            });
+        },
+
+        Salvar: function () {
+
+            MODEL_HELPER.limparMensagemCampos("formUsuario");
+            let usuario = MODEL_HELPER.recuperarDataSalvar("formUsuario");
+
+            AJAX_HELPER.ajaxRequestApi({
+                idForm: "formUsuario",
+                dataObj: usuario,
+                url: URL_HELPER.criarUrlApi('Usuario', 'SalvarUsuario', true),
+                success: function () {
+                    MODEL_HELPER.limparTodosCampos("formUsuario");
+                    Usuario.BuscarTabela();
+                    Jogo.BuscarDropdownJogosDisponiveis("formUsuario", 0);
+                }
+            });
+        },
+
+        Excluir: function (id) {
+            bootbox.confirm({
+                title: "Excluir",
+                message: "@DTO.Ferramentas.Mensagens.MS_013",
+                locale: 'br',
+                centerVertical: true,
+                callback: function (result) {
+                    if (result) {
+                        AJAX_HELPER.ajaxRequestApi({
+                            idForm: "formUsuario",
+                            dataObj: {
+                                id: id
+                            },
+                            type: "DELETE",
+                            url: URL_HELPER.criarUrlApi('Usuario', 'ExcluirUsuario', true),
+                            success: function () {
+                                Usuario.BuscarTabela();
+                                Jogo.BuscarDropdownJogosDisponiveis("formUsuario", 0);
+                            }
+                        });
+                    }
+                }
+            });
+        },
+
+        Editar: function (id) {
+
+            MODEL_HELPER.limparMensagemCampos("formUsuario");
+
+            AJAX_HELPER.ajaxRequestApi({
+                idForm: "formUsuario",
+                type: "GET",
+                url: URL_HELPER.criarUrlApi('Usuario', 'BuscarUsuarioPorId', true) + "?id=" + id,
+                success: function (result) {
+                    if (result.retorno != null) {
+                        let jogosSelecionados = [];
+                        if (result.retorno.jogo !== null && result.retorno.jogo !== undefined) {
+                            for (let i = 0; i < result.retorno.jogo.length; i++) {
+                                jogosSelecionados.push(result.retorno.jogo[i].id);
+                            }
+                        }
+                        result.retorno.jogosSelecionados = jogosSelecionados;
+                        Jogo.BuscarDropdownJogosDisponiveis("formUsuario", result.retorno.id, function () {
+                            MODEL_HELPER.popularTodosCampos(result.retorno, "formUsuario");
+                        });
+                    }
+                }
+            });
+        },
+
+        BuscarTabela: function () {
+            AJAX_HELPER.ajaxRequestApi({
+                idForm: "formUsuario",
+                type: "GET",
+                url: URL_HELPER.criarUrlApi('Usuario', 'BuscarUsuarios', true),
+                success: function (result) {
+
+                    DATATABLE_HELPER.montarTabela({
+                        idTabela: 'tableUsuario',
+                        data: result.retorno,
+                        columnDefs: [{
+                            className: "noVis", "targets": [0, 1]
+                        }],
+                        columns: [
+                            {
+                                data: null,
+                                sortable: false,
+                                title: "Ações",
+                                width: "5%",
+                                render: function (data, type, row) {
+                                    let button = '<button class="btn btn-default btn-sm" title="Editar" onclick="Usuario.Editar(' + data.id + ')"><i class="@DTO.Ferramentas.Constantes.ICONE_EDITAR"></i></button>';
+                                    button += '<button class="btn btn-default btn-sm" title="Excluir" onclick="Usuario.Excluir(' + data.id + ')"><i class="@DTO.Ferramentas.Constantes.ICONE_EXCLUIR"></i></button>';
+                                    return button;
+                                }
+                            },
+                            { data: "nome", title: "Nome" },
+                            { data: "email", title: "E-mail" },
+                            { data: "cpf", title: "CPF", visible: false },
+                            { data: "telefone", title: "Telefone" },
+                            { data: "observacao", title: "Observações" },
+                            { data: "jogosEmprestados", title: "Jogos emprestados" },              
+                            { data: "dataCadastroFormatado", title: "Cadastrado" },
+                            { data: "dataAlteracaoFormatado", title: "Alteração" },
+                            {
+                                data: null,
+                                sortable: false,
+                                title: "Foto",
+                                width: "5%",
+                                className: "text-center",
+                                render: function (data) {
+                                    return data.miniaturaBase64 !== null ? '<img width="50" style="box-shadow:0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);" src="' + data.miniaturaBase64 + '" />' : '';
+                                }
+                            }
+                        ],
+                        buttons: [
+                            {
+                                extend: 'colvis',
+                                columns: ':not(.noVis)'
+                            },
+                            'excel', 'pdf', 'print'],
+                        select: {
+                            style: 'single',
+                            selector: 'td:not(:first-child)'
+                        },
+                        dom: "Bfrtip",
+                        scrollX: true,
+                        fixedHeader: false,
+                        paging: true,
+                        fixedColumns: true,
+                        scrollY: "500px",
+                        paging: true,
+                        fnDrawCallback: function () {
+                            $(".buttons-print").html('<i class="@DTO.Ferramentas.Constantes.ICONE_IMPRESSORA"></i>&nbsp;Imprimir');
+                            $(".buttons-pdf").html('<i class="@DTO.Ferramentas.Constantes.ICONE_PDF"></i>&nbsp;PDF');
+                            $(".buttons-excel").html('<i class="@DTO.Ferramentas.Constantes.ICONE_EXCEL"></i>&nbsp;Excel');
+                            $(".buttons-colvis").html('<i class="@DTO.Ferramentas.Constantes.ICONE_OLHO"></i>&nbsp;Colunas');
+                        }
+                    });
+
+                }
+            });
+        }
+    };
+
+    $(document).ready(function () {
+        Jogo.BuscarDropdownJogosDisponiveis("formUsuario", 0);
+    });
+
+</script>

@@ -1,0 +1,22 @@
+﻿<script>
+    var UsuarioHome = {
+
+        BuscarFotoPerfil: function () {
+            AJAX_HELPER.ajaxRequestApi({
+                type: "GET",
+                waitingForShow: false,
+                url: URL_HELPER.criarUrlApi('Perfil', 'BuscarFotoPerfilUsuarioAtual', true),
+                success: function (result) {
+                    if (result.retorno != null) {
+                        $("#fotoMiniaturaUsuario").prop('src', result.retorno);
+                    }
+                }
+            });
+        },
+    };
+
+    $(document).ready(function () {
+        UsuarioHome.BuscarFotoPerfil();
+    });
+
+</script>

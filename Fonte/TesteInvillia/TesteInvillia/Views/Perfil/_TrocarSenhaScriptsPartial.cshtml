@@ -1,0 +1,20 @@
+﻿<script>
+    var TrocarSenha = {
+
+        Salvar: function () {
+
+            MODEL_HELPER.limparMensagemCampos("formTrocarSenha");
+            let senha = MODEL_HELPER.recuperarDataSalvar("formTrocarSenha");
+
+            AJAX_HELPER.ajaxRequestApi({
+                idForm: "formTrocarSenha",
+                dataObj: senha,
+                url: URL_HELPER.criarUrlApi('Perfil', 'TrocarSenha', true),
+                success: function () {
+                    MODEL_HELPER.limparTodosCampos("formTrocarSenha");
+                }
+            });
+        },
+    };
+
+</script>

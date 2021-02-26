@@ -1,0 +1,141 @@
+﻿@model DTO.DTO.UsuarioDTO
+
+<input asp-for="Id" type="hidden" />
+<input asp-for="Excluido" type="hidden" />
+<input asp-for="DataCadastro" type="hidden" />
+<input asp-for="DataAlteracao" type="hidden" />
+<input asp-for="Senha" type="hidden" />
+<input asp-for="FotoBase64" type="hidden" />
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="card shadow mb-4">
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary">Usuário</h6>
+            </div>
+            <div class="card-body">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="row">
+
+                    <div class="col-md-12 container">
+                        <img id="formUsuarioFotoBase64Img" width="200" class="rounded mx-auto d-block" style="box-shadow:0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);" src="@DTO.Ferramentas.Constantes.IMAGEM_SEM_USUARIO" />
+                        <div class="overlayAtualizar">
+                            <a class="iconAtualizar" onclick="$('#formUsuario [id=formUsuarioFotoBase64Temp]').click()" title="Atualizar">
+                                <span>Atualizar</span>
+                                <i class="fa fa-edit"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12 ">
+                        <div class="form-group">
+                            <label asp-for="FotoBase64" class="control-label"></label>
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="@DTO.Ferramentas.Constantes.ICONE_ARQUIVO_IMAGEM"></i></span>
+                                </div>
+                                <div class="custom-file">
+                                    <input id="formUsuarioFotoBase64Temp" type="file" asp-for="FotoBase64" accept="image/*" onchange="MODEL_HELPER.readFile(this, 'formUsuario', 'FotoBase64');" class="form-control">
+                                    <label id="formUsuarioFotoBase64Label" class="custom-file-label" for="formUsuarioFotoBase64Temp">Escolha uma imagem...</label>
+                                </div>
+                            </div>
+                            <span asp-validation-for="FotoBase64" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 col-xl-7">
+                        <div class="form-group">
+                            <label asp-for="Nome" class="control-label"></label>
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="@DTO.Ferramentas.Constantes.ICONE_LAPIS"></i></span>
+                                </div>
+                                <input asp-for="Nome" class="form-control" />
+                            </div>
+                            <span asp-validation-for="Nome" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 col-xl-5">
+                        <div class="form-group">
+                            <label asp-for="Cpf" class="control-label"></label>
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="@DTO.Ferramentas.Constantes.ICONE_CPF"></i></span>
+                                </div>
+                                <input asp-for="Cpf" class="form-control cpf" />
+                            </div>
+                            <span asp-validation-for="Cpf" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="col-xl-6">
+                        <div class="form-group">
+                            <label asp-for="Email" class="control-label"></label>
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="@DTO.Ferramentas.Constantes.ICONE_ENVELOPE"></i></span>
+                                </div>
+                                <input asp-for="Email" class="form-control" />
+                            </div>
+                            <span asp-validation-for="Email" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="card shadow mb-4">
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary">Informações adicionais</h6>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6 col-xl-3">
+                        <div class="form-group">
+                            <label asp-for="Telefone" class="control-label"></label>
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="@DTO.Ferramentas.Constantes.ICONE_TELEFONE"></i></span>
+                                </div>
+                                <input asp-for="Telefone" class="form-control phone_mobile" />
+                            </div>
+                            <span asp-validation-for="Telefone" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 col-xl-9">
+                        <div class="form-group">
+                            <label asp-for="Observacao" class="control-label"></label>
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="@DTO.Ferramentas.Constantes.ICONE_LAPIS"></i></span>
+                                </div>
+                                <input asp-for="Observacao" class="form-control" />
+                            </div>
+                            <span asp-validation-for="Observacao" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label asp-for="JogosSelecionados" class="control-label"></label>
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="@DTO.Ferramentas.Constantes.ICONE_LISTA"></i></span>
+                                </div>
+                                <select asp-for="JogosSelecionados" class="form-control"></select>
+                            </div>
+                            <span asp-validation-for="JogosSelecionados" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

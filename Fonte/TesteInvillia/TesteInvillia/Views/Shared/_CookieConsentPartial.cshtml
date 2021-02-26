@@ -1,0 +1,41 @@
+﻿@using Microsoft.AspNetCore.Http.Features
+
+@{
+    var consentFeature = Context.Features.Get<ITrackingConsentFeature>();
+    var showBanner = !consentFeature?.CanTrack ?? false;
+    var cookieString = consentFeature?.CreateConsentCookie();
+}
+
+@if (showBanner)
+{
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12" id="cookieConsent">
+                <button class="btn btn-primary" data-toggle="collapse" data-target="#cookieConsent .navbar-collapse">
+                    <span class="fas fa-info-circle"></span>
+                    Cookies e privacidade
+                </button>
+                <br />
+                <div class="collapse navbar-collapse">
+                    <p class="navbar-text">
+                        Usamos cookies para garantir que obtém sempre a melhor experiência ao visitar o nosso website, para medir a utilização e o desempenho.
+                        Ao clicar em “Aceitar”, concorda com as nossas configurações padrão.
+                    </p>
+                    <div class="form-group">
+                        <button type="button" class="btn btn-primary" data-cookie-string="@cookieString">Aceitar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br />
+    <script>
+        (function () {
+            document.querySelector("#cookieConsent button[data-cookie-string]").addEventListener("click", function (el) {
+                document.cookie = el.target.dataset.cookieString;
+                document.querySelector("#cookieConsent").style.display = "none";
+                //document.querySelector("#cookieConsent").classList.add("hidden");
+            }, false);
+        })();
+    </script>
+}

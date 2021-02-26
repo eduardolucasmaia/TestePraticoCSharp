@@ -1,0 +1,184 @@
+﻿<script>
+    var Jogo = {
+
+        BuscarDropdownJogosDisponiveis: function (idForm, idUsuario, callback) {
+            AJAX_HELPER.ajaxRequestApi({
+                idForm: idForm,
+                type: "GET",
+                url: URL_HELPER.criarUrlApi('Jogo', 'BuscarJogosDisponiveis', true) + "?id=" + idUsuario,
+                success: function (result) {
+                    if (result.retorno !== null) {
+                        $("#" + idForm + " [id=JogosSelecionados]").empty();
+                        for (let i = 0; i < result.retorno.length; i++) {
+                            MODEL_HELPER.popularDropDown(result.retorno[i].id, result.retorno[i].nome + " - " + result.retorno[i].plataformaFormatado, "JogosSelecionados", idForm);
+                        }
+                        if (callback !== null && callback !== undefined) {
+                            callback();
+                        }           
+                    }
+                }
+            });
+        },
+
+        BuscarDropdownPlataforma: function (idForm) {
+            AJAX_HELPER.ajaxRequestApi({
+                idForm: idForm,
+                type: "GET",
+                url: URL_HELPER.criarUrlApi('Jogo', 'BuscarPlataformas', true),
+                success: function (result) {
+                    if (result.retorno !== null) {
+                        $("#" + idForm + " [id=Plataforma]").empty();
+                        for (let i = 0; i < result.retorno.length; i++) {
+                            MODEL_HELPER.popularDropDown(result.retorno[i].id, result.retorno[i].nome, "Plataforma", idForm);
+                        }
+                        $("#" + idForm + " [id=Plataforma] option:first").attr('selected', 'selected');
+                    }
+                }
+            });
+        },
+
+        Salvar: function () {
+            MODEL_HELPER.limparMensagemCampos("formJogo");
+            let jogo = MODEL_HELPER.recuperarDataSalvar("formJogo");
+
+            AJAX_HELPER.ajaxRequestApi({
+                idForm: "formJogo",
+                dataObj: jogo,
+                url: URL_HELPER.criarUrlApi('Jogo', 'SalvarJogo', true),
+                success: function (result) {
+                    MODEL_HELPER.limparTodosCampos("formJogo");
+                    if ($('#tableJogo').length) {
+                        Jogo.BuscarTabela();
+                    }                
+                }
+            });
+        },
+
+        Excluir: function (id) {
+            bootbox.confirm({
+                title: "Excluir",
+                message: "@DTO.Ferramentas.Mensagens.MS_013",
+                locale: 'br',
+                centerVertical: true,
+                callback: function (result) {
+                    if (result) {
+                        AJAX_HELPER.ajaxRequestApi({
+                            idForm: "formJogo",
+                            dataObj: {
+                                id: id
+                            },
+                            type: "DELETE",
+                            url: URL_HELPER.criarUrlApi('Jogo', 'ExcluirJogo', true),
+                            success: function (result) {
+                                Jogo.BuscarTabela();
+                            }
+                        });
+                    }
+                }
+            });
+        },
+
+        Editar: function (id) {
+            MODEL_HELPER.limparMensagemCampos("formJogo");
+
+            AJAX_HELPER.ajaxRequestApi({
+                idForm: "formJogo",
+                type: "GET",
+                url: URL_HELPER.criarUrlApi('Jogo', 'BuscarJogoPorId', true) + "?id=" + id,
+                success: function (result) {
+                    if (result.retorno != null) {
+                        MODEL_HELPER.popularTodosCampos(result.retorno, "formJogo");
+                    }
+                }
+            });
+        },
+
+        BuscarTabela: function () {
+            AJAX_HELPER.ajaxRequestApi({
+                idForm: "formJogo",
+                type: "GET",
+                url: URL_HELPER.criarUrlApi('Jogo', 'BuscarJogos', true),
+                success: function (result) {
+
+                    DATATABLE_HELPER.montarTabela({
+                        idTabela: 'tableJogo',
+                        data: result.retorno,
+                        columnDefs: [{
+                            className: "noVis", "targets": [0, 1]
+                        }],
+                        columns: [
+                            {
+                                data: null,
+                                sortable: false,
+                                title: "Ações",
+                                width: "5%",
+                                render: function (data, type, row) {
+                                    let button = '<button class="btn btn-default btn-sm" title="Editar" onclick="Jogo.Editar(' + data.id + ')"><i class="@DTO.Ferramentas.Constantes.ICONE_EDITAR"></i></button>';
+                                    button += '<button class="btn btn-default btn-sm" title="Excluir" onclick="Jogo.Excluir(' + data.id + ')"><i class="@DTO.Ferramentas.Constantes.ICONE_EXCLUIR"></i></button>';
+                                    return button;
+                                }
+                            },
+                            { data: "nome", title: "Nome" },
+                            { data: "descricao", title: "Descrição" },
+                            { data: "plataformaFormatado", title: "Plataforma" },
+                            {
+                                data: null,
+                                sortable: false,
+                                title: "Emprestado",
+                                width: "5%",
+                                className: "text-center",
+                                render: function (data) {
+                                    return data.emprestado ? '<i class="@DTO.Ferramentas.Constantes.ICONE_CHECK_POSITIVO"></i>' : '<i class="@DTO.Ferramentas.Constantes.ICONE_CHECK_NEGATIVO"></i>';
+                                }
+                            },
+                            { data: "observacao", title: "Observações" },
+                            { data: "usuarioLocatario", title: "Usuário utilizando" },
+                            { data: "dataCadastroFormatado", title: "Cadastrado" },
+                            { data: "dataAlteracaoFormatado", title: "alteração" },
+                            {
+                                data: null,
+                                sortable: false,
+                                title: "Imagem",
+                                width: "5%",
+                                className: "text-center",
+                                render: function (data) {
+                                    return data.miniaturaBase64 !== null ? '<img width="50" style="box-shadow:0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);" src="' + data.miniaturaBase64 + '" />' : '';
+                                }
+                            }
+                        ],
+                        buttons: [
+                            {
+                                extend: 'colvis',
+                                columns: ':not(.noVis)'
+                            },
+                            'excel', 'pdf', 'print'],
+                        select: {
+                            style: 'single',
+                            selector: 'td:not(:first-child)'
+                        },
+                        dom: "Bfrtip",
+                        scrollX: true,
+                        fixedHeader: false,
+                        paging: true,
+                        fixedColumns: true,
+                        scrollY: "500px",
+                        paging: true,
+                        fnDrawCallback: function () {
+                            $(".buttons-print").html('<i class="@DTO.Ferramentas.Constantes.ICONE_IMPRESSORA"></i>&nbsp;Imprimir');
+                            $(".buttons-pdf").html('<i class="@DTO.Ferramentas.Constantes.ICONE_PDF"></i>&nbsp;PDF');
+                            $(".buttons-excel").html('<i class="@DTO.Ferramentas.Constantes.ICONE_EXCEL"></i>&nbsp;Excel');
+                            $(".buttons-colvis").html('<i class="@DTO.Ferramentas.Constantes.ICONE_OLHO"></i>&nbsp;Colunas');
+                        }
+                    });
+
+                }
+            });
+        }
+    };
+
+    $(document).ready(function () {     
+        Jogo.BuscarDropdownPlataforma("formJogo");
+        Usuario.BuscarDropdown("formJogo");
+    });
+
+</script>

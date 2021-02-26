@@ -1,0 +1,48 @@
+﻿<!-- Begin Page Content -->
+<div class="container-fluid">
+    <!-- Page Heading -->
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">Jogos</h1>
+    </div>
+    <form asp-controller="Jogo" asp-action="Index" id="formJogo" method="post" role="form">
+        @{await Html.RenderPartialAsync("~/Views/Jogo/_Formulario.cshtml", new DTO.DTO.JogoDTO());}
+    </form>
+
+    <div class="form-group">
+        <button class="btn btn-primary" type="button" onclick="Jogo.Salvar();">Salvar</button>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card shadow mb-4">
+                <!-- Card Header - Accordion -->
+                <a href="#cardTabelaJogo" class="d-block card-header py-3" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="cardTabelaJogo">
+                    <h6 class="m-0 font-weight-bold text-primary">Tabela</h6>
+                </a>
+                <!-- Card Content - Collapse -->
+                <div class="collapse show" id="cardTabelaJogo">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <table id="tableJogo" class="table table-bordered" cellspacing="0" width="100%"></table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{await Html.RenderPartialAsync("~/Views/Jogo/_JogoScriptsPartial.cshtml");}
+    @{await Html.RenderPartialAsync("~/Views/Usuario/_UsuarioScriptsPartial.cshtml");}
+
+    <script>
+        $(document).ready(function () {
+            Jogo.BuscarTabela();
+        });
+    </script>
+}
